@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <PackageJsonName Condition="$(PackageJsonName) == ''">vedastro-mcp-server</PackageJsonName>
+    <PackageJsonVersion Condition="$(PackageJsonVersion) == ''">1.0.0</PackageJsonVersion>
+    <PackageJsonType Condition="$(PackageJsonType) == ''">module</PackageJsonType>
+    <PackageJsonPrivate Condition="$(PackageJsonPrivate) == ''">true</PackageJsonPrivate>
+    <PackageJsonMain Condition="$(PackageJsonMain) == ''">dist/src/functions/*.js</PackageJsonMain>
+    <PackageJsonScriptsBuild Condition="$(PackageJsonScriptsBuild) == ''">tsc</PackageJsonScriptsBuild>
+    <PackageJsonScriptsStart Condition="$(PackageJsonScriptsStart) == ''">npm run build &amp;&amp; func start</PackageJsonScriptsStart>
+    <PackageJsonDependenciesAzureFunctions Condition="$(PackageJsonDependenciesAzureFunctions) == ''">^4.6.0</PackageJsonDependenciesAzureFunctions>
+    <PackageJsonDependenciesModelcontextprotocolSdk Condition="$(PackageJsonDependenciesModelcontextprotocolSdk) == ''">latest</PackageJsonDependenciesModelcontextprotocolSdk>
+    <PackageJsonDependenciesZod Condition="$(PackageJsonDependenciesZod) == ''">^4.3.6</PackageJsonDependenciesZod>
+    <PackageJsonEnginesNode Condition="$(PackageJsonEnginesNode) == ''">&gt;=20.0.0</PackageJsonEnginesNode>
+    <PackageJsonDevdependenciesTypesNode Condition="$(PackageJsonDevdependenciesTypesNode) == ''">^22.0.0</PackageJsonDevdependenciesTypesNode>
+    <PackageJsonDevdependenciesTypescript Condition="$(PackageJsonDevdependenciesTypescript) == ''">^5.7.0</PackageJsonDevdependenciesTypescript>
+  </PropertyGroup>
+</Project>

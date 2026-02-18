@@ -1,0 +1,23 @@
+{
+  "name": "vedastro-mcp-server",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "main": "dist/src/functions/*.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && func start"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.6.0",
+    "@modelcontextprotocol/sdk": "latest",
+    "zod": "^4.3.6"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -83,6 +83,7 @@ URL from below          VS Code, or any              AI delivers Vedic
 4. Restart Claude Desktop
 5. Ask Claude: *"Using my birth details (date, time, location), get my Vedic horoscope predictions"*
 
+**Free Tier** (5 requests/minute):
 ```json
 {
   "mcpServers": {
@@ -93,13 +94,29 @@ URL from below          VS Code, or any              AI delivers Vedic
 }
 ```
 
+**Unlimited** ($1/month with [API Key](https://buy.stripe.com/5kA8y67nVchNdqw4gx)):
+```json
+{
+  "mcpServers": {
+    "vedastro": {
+      "url": "https://mcp.vedastro.org/api/mcp",
+      "headers": {
+        "x-api-key": "your-api-key-here"
+      }
+    }
+  }
+}
+```
+
 ### 📝 Cursor
 
 1. Open Cursor and go to **Settings** > **MCP**
 2. Click **"Add new MCP server"**
 3. Set Type to **http**, Name to **vedastro**, and paste the URL
-4. Ask in chat: *"Get Vedic horoscope predictions for someone born on 25/10/1992 at 14:30 in Mumbai"*
+4. For unlimited access, add your API key in headers
+5. Ask in chat: *"Get Vedic horoscope predictions for someone born on 25/10/1992 at 14:30 in Mumbai"*
 
+**Free Tier** (5 requests/minute):
 ```json
 // In .cursor/mcp.json at your project root:
 {
@@ -111,13 +128,29 @@ URL from below          VS Code, or any              AI delivers Vedic
 }
 ```
 
+**Unlimited** ($1/month with [API Key](https://buy.stripe.com/5kA8y67nVchNdqw4gx)):
+```json
+{
+  "mcpServers": {
+    "vedastro": {
+      "url": "https://mcp.vedastro.org/api/mcp",
+      "headers": {
+        "x-api-key": "your-api-key-here"
+      }
+    }
+  }
+}
+```
+
 ### 🌊 Windsurf
 
 1. Open Windsurf and go to **Settings** > **Cascade** > **MCP**
 2. Click **"Add Server"** and choose **Streamable HTTP** type
 3. Set Server ID to **vedastro** and paste the URL
-4. Use Cascade to ask for Vedic astrology predictions
+4. For unlimited access, add your API key in headers
+5. Use Cascade to ask for Vedic astrology predictions
 
+**Free Tier** (5 requests/minute):
 ```json
 // In ~/.codeium/windsurf/mcp_config.json:
 {
@@ -129,13 +162,29 @@ URL from below          VS Code, or any              AI delivers Vedic
 }
 ```
 
+**Unlimited** ($1/month with [API Key](https://buy.stripe.com/5kA8y67nVchNdqw4gx)):
+```json
+{
+  "mcpServers": {
+    "vedastro": {
+      "url": "https://mcp.vedastro.org/api/mcp",
+      "headers": {
+        "x-api-key": "your-api-key-here"
+      }
+    }
+  }
+}
+```
+
 ### 💻 VS Code (GitHub Copilot)
 
 1. In your project, create `.vscode/mcp.json`
 2. Paste the configuration below
-3. Open Copilot Chat and switch to **Agent** mode
-4. Ask: *"Use the VedAstro tool to get horoscope predictions for a birth on 01/01/2000 at 12:00 in New York"*
+3. For unlimited access, add your API key in headers
+4. Open Copilot Chat and switch to **Agent** mode
+5. Ask: *"Use the VedAstro tool to get horoscope predictions for a birth on 01/01/2000 at 12:00 in New York"*
 
+**Free Tier** (5 requests/minute):
 ```json
 // .vscode/mcp.json
 {
@@ -143,6 +192,21 @@ URL from below          VS Code, or any              AI delivers Vedic
     "vedastro": {
       "type": "http",
       "url": "https://mcp.vedastro.org/api/mcp"
+    }
+  }
+}
+```
+
+**Unlimited** ($1/month with [API Key](https://buy.stripe.com/5kA8y67nVchNdqw4gx)):
+```json
+{
+  "servers": {
+    "vedastro": {
+      "type": "http",
+      "url": "https://mcp.vedastro.org/api/mcp",
+      "headers": {
+        "x-api-key": "your-api-key-here"
+      }
     }
   }
 }
@@ -158,8 +222,10 @@ For any MCP-compatible client, use these connection details:
 | **Endpoint URL** | `https://mcp.vedastro.org/api/mcp` |
 | **Server Name** | VedAstro |
 | **Available Tools** | `get_horoscope_predictions`, `get_match_report`, `get_numerology_prediction`, `get_astrology_raw_data`, `get_general_astro_data`, `get_ashtakvarga_data` |
-| **Auth** | None required (free tier) or API Key for unlimited |
+| **Auth** | None required (free tier) or API Key in headers for unlimited |
+| **API Key Header** | `x-api-key`, `APIKey`, or `Authorization: Bearer` |
 
+**Free Tier** (5 requests/minute):
 ```json
 // Generic MCP configuration (JSON)
 {
@@ -168,6 +234,56 @@ For any MCP-compatible client, use these connection details:
   "url": "https://mcp.vedastro.org/api/mcp"
 }
 ```
+
+**Unlimited** ($1/month with [API Key](https://buy.stripe.com/5kA8y67nVchNdqw4gx)):
+```json
+{
+  "server_name": "vedastro",
+  "transport": "streamable-http",
+  "url": "https://mcp.vedastro.org/api/mcp",
+  "headers": {
+    "x-api-key": "your-api-key-here"
+  }
+}
+```
+
+> **Note:** The server accepts API keys via `x-api-key`, `APIKey`, or `Authorization: Bearer` headers.
+
+---
+
+## 🔑 API Key Authentication (Unlimited Access)
+
+The MCP server supports **optional API key authentication** for unlimited requests. Without an API key, you get **5 requests/minute** (free tier). With an API key, you get **unlimited requests** for just **$1/month**.
+
+### How to Add API Key
+
+Add the API key in your MCP client configuration using the `headers` field:
+
+```json
+{
+  "mcpServers": {
+    "vedastro": {
+      "url": "https://mcp.vedastro.org/api/mcp",
+      "headers": {
+        "x-api-key": "your-api-key-here"
+      }
+    }
+  }
+}
+```
+
+### Supported Header Formats
+
+The server accepts API keys via any of these headers:
+- ✅ `x-api-key: your-key-here`
+- ✅ `APIKey: your-key-here`
+- ✅ `Authorization: Bearer your-key-here`
+
+### Get Your API Key
+
+👉 [**Purchase API Key — $1/month**](https://buy.stripe.com/5kA8y67nVchNdqw4gx)
+
+After purchase, your API key will be visible on your [**Account Page**](https://vedastro.org/Account.html) or [**API Builder Page**](https://vedastro.org/APIBuilder.html). Simply copy it and add it to your MCP client configuration as shown above.
 
 ---
 
