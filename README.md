@@ -39,7 +39,7 @@ VedAstro's MCP Server brings the full power of Vedic astrology — horoscope pre
 ### Why It Matters
 
 - **💬 Natural Conversations** — Ask your AI "What does my birth chart say?" and get real Vedic astrology analysis, not generic horoscopes.
-- **🤖 Works with Any AI** — Claude, ChatGPT, Cursor, Windsurf, VS Code Copilot — any MCP-compatible client works.
+- **🤖 Works with Any AI** — Claude, ChatGPT, Gemini, Cursor — any MCP-compatible client works.
 - **🛡️ Authentic Calculations** — Powered by VedAstro's Swiss Ephemeris engine with Raman Ayanamsa — the same precision astrologers trust.
 - **💻 Zero Code Required** — Just paste one URL into your AI client's settings. No SDKs, no libraries, no API wrappers needed.
 
@@ -53,9 +53,9 @@ Step 1: Copy the URL        Step 2: Paste in Your AI      Step 3: Ask Anything
 │  Copy the   │────────▶│  Paste in Your   │───────▶│  Ask Anything   │
 │    URL      │         │     AI Client    │        │                 │
 └─────────────┘         └──────────────────┘        └─────────────────┘
-Copy the MCP            Add it to Claude            "What are my horoscope
-server endpoint         Desktop, Cursor,             predictions?" and your
-URL from below          VS Code, or any              AI delivers Vedic
+Copy the MCP            Add it to Claude,           "What are my horoscope
+server endpoint         ChatGPT, Gemini,             predictions?" and your
+URL from below          Cursor, or any               AI delivers Vedic
                         MCP client                   insights
 ```
 
@@ -142,21 +142,41 @@ URL from below          VS Code, or any              AI delivers Vedic
 }
 ```
 
-### 🌊 Windsurf
+### 💬 ChatGPT
 
-1. Open Windsurf and go to **Settings** > **Cascade** > **MCP**
-2. Click **"Add Server"** and choose **Streamable HTTP** type
-3. Set Server ID to **vedastro** and paste the URL
-4. For unlimited access, add your API key in headers
-5. Use Cascade to ask for Vedic astrology predictions
+1. Open ChatGPT and go to **Settings** > **Apps & Connectors** > **Advanced**
+2. Toggle **"Developer Mode"** on
+3. Under Connectors, click **"Create"**
+4. Set Name to **VedAstro**, paste the MCP Server URL, and set Authentication accordingly
+5. Check **"I trust this application"** and click **Create**
+6. In a new chat, click **"+"** and select your VedAstro connector
+
+**Free Tier** (5 requests/minute):
+- URL: `https://mcp.vedastro.org/api/mcp`
+- Authentication: **None**
+
+**Unlimited** ($1/month with [API Key](https://buy.stripe.com/5kA8y67nVchNdqw4gx)):
+- URL: `https://mcp.vedastro.org/api/mcp`
+- Authentication: **API Key**
+- Header Name: `x-api-key`
+- Header Value: `your-api-key-here`
+
+> **Note:** If ChatGPT requires the legacy SSE endpoint, use `https://mcp.vedastro.org/api/sse` instead.
+
+### 🔮 Google Gemini
+
+1. Install Gemini CLI: `npm install -g @google/generative-ai-cli`
+2. Run `gemini mcp add` and provide server details
+3. Verify connection: `gemini /mcp` to see available tools
+4. Ask Gemini: *"Using the VedAstro MCP server, get my horoscope predictions"*
 
 **Free Tier** (5 requests/minute):
 ```json
-// In ~/.codeium/windsurf/mcp_config.json:
+// Streamable HTTP
 {
   "mcpServers": {
     "vedastro": {
-      "url": "https://mcp.vedastro.org/api/mcp"
+      "httpUrl": "https://mcp.vedastro.org/api/mcp"
     }
   }
 }
@@ -167,43 +187,7 @@ URL from below          VS Code, or any              AI delivers Vedic
 {
   "mcpServers": {
     "vedastro": {
-      "url": "https://mcp.vedastro.org/api/mcp",
-      "headers": {
-        "x-api-key": "your-api-key-here"
-      }
-    }
-  }
-}
-```
-
-### 💻 VS Code (GitHub Copilot)
-
-1. In your project, create `.vscode/mcp.json`
-2. Paste the configuration below
-3. For unlimited access, add your API key in headers
-4. Open Copilot Chat and switch to **Agent** mode
-5. Ask: *"Use the VedAstro tool to get horoscope predictions for a birth on 01/01/2000 at 12:00 in New York"*
-
-**Free Tier** (5 requests/minute):
-```json
-// .vscode/mcp.json
-{
-  "servers": {
-    "vedastro": {
-      "type": "http",
-      "url": "https://mcp.vedastro.org/api/mcp"
-    }
-  }
-}
-```
-
-**Unlimited** ($1/month with [API Key](https://buy.stripe.com/5kA8y67nVchNdqw4gx)):
-```json
-{
-  "servers": {
-    "vedastro": {
-      "type": "http",
-      "url": "https://mcp.vedastro.org/api/mcp",
+      "httpUrl": "https://mcp.vedastro.org/api/mcp",
       "headers": {
         "x-api-key": "your-api-key-here"
       }
