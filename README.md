@@ -77,32 +77,32 @@ URL from below          Cursor, or any               AI delivers Vedic
 
 ### 🤖 Claude Desktop
 
+**Option 1: Simple URL Paste (Recommended)**
 1. Open Claude Desktop and go to **Settings** (gear icon)
-2. Click **Developer** tab, then **Edit Config**
-3. Add the VedAstro MCP server configuration below to `claude_desktop_config.json`
+2. Click **Connectors** tab and scroll to the bottom
+3. Click **"Add custom connector"** and paste the URL below
 4. Restart Claude Desktop
 5. Ask Claude: *"Using my birth details (date, time, location), get my Vedic horoscope predictions"*
 
 **Free Tier** (5 requests/minute):
-```json
-{
-  "mcpServers": {
-    "vedastro": {
-      "url": "https://mcp.vedastro.org/api/mcp"
-    }
-  }
-}
+```
+https://mcp.vedastro.org/api/mcp
 ```
 
 **Unlimited** ($1/month with [API Key](https://buy.stripe.com/5kA8y67nVchNdqw4gx)):
+```
+https://mcp.vedastro.org/api/mcp/key/your-api-key-here
+```
+
+**Option 2: Manual JSON Config (Advanced)**
+1. Go to **Settings** > **Developer** > **Edit Config**
+2. Add the configuration below to `claude_desktop_config.json`
+
 ```json
 {
   "mcpServers": {
     "vedastro": {
-      "url": "https://mcp.vedastro.org/api/mcp",
-      "headers": {
-        "x-api-key": "your-api-key-here"
-      }
+      "url": "https://mcp.vedastro.org/api/mcp/key/your-api-key-here"
     }
   }
 }
@@ -112,9 +112,8 @@ URL from below          Cursor, or any               AI delivers Vedic
 
 1. Open Cursor and go to **Settings** > **MCP**
 2. Click **"Add new MCP server"**
-3. Set Type to **http**, Name to **vedastro**, and paste the URL
-4. For unlimited access, add your API key in headers
-5. Ask in chat: *"Get Vedic horoscope predictions for someone born on 25/10/1992 at 14:30 in Mumbai"*
+3. Set Type to **http**, Name to **vedastro**, and paste the appropriate URL below
+4. Ask in chat: *"Get Vedic horoscope predictions for someone born on 25/10/1992 at 14:30 in Mumbai"*
 
 **Free Tier** (5 requests/minute):
 ```json
@@ -133,10 +132,7 @@ URL from below          Cursor, or any               AI delivers Vedic
 {
   "mcpServers": {
     "vedastro": {
-      "url": "https://mcp.vedastro.org/api/mcp",
-      "headers": {
-        "x-api-key": "your-api-key-here"
-      }
+      "url": "https://mcp.vedastro.org/api/mcp/key/your-api-key-here"
     }
   }
 }
@@ -147,21 +143,24 @@ URL from below          Cursor, or any               AI delivers Vedic
 1. Open ChatGPT and go to **Settings** > **Apps & Connectors** > **Advanced**
 2. Toggle **"Developer Mode"** on
 3. Under Connectors, click **"Create"**
-4. Set Name to **VedAstro**, paste the MCP Server URL, and set Authentication accordingly
-5. Check **"I trust this application"** and click **Create**
-6. In a new chat, click **"+"** and select your VedAstro connector
+4. Set Name to **VedAstro** and paste the appropriate URL below
+5. Set Authentication to **None**
+6. Check **"I trust this application"** and click **Create**
+7. In a new chat, click **"+"** and select your VedAstro connector
 
 **Free Tier** (5 requests/minute):
-- URL: `https://mcp.vedastro.org/api/mcp`
-- Authentication: **None**
+```
+URL: https://mcp.vedastro.org/api/mcp
+Authentication: None
+```
 
 **Unlimited** ($1/month with [API Key](https://buy.stripe.com/5kA8y67nVchNdqw4gx)):
-- URL: `https://mcp.vedastro.org/api/mcp`
-- Authentication: **API Key**
-- Header Name: `x-api-key`
-- Header Value: `your-api-key-here`
+```
+URL: https://mcp.vedastro.org/api/mcp/key/your-api-key-here
+Authentication: None
+```
 
-> **Note:** If ChatGPT requires the legacy SSE endpoint, use `https://mcp.vedastro.org/api/sse` instead.
+> **Note:** If ChatGPT requires the legacy SSE endpoint, use `https://mcp.vedastro.org/api/sse/key/your-api-key-here` for premium or `https://mcp.vedastro.org/api/sse` for free tier.
 
 ### 🔮 Google Gemini
 
@@ -172,7 +171,6 @@ URL from below          Cursor, or any               AI delivers Vedic
 
 **Free Tier** (5 requests/minute):
 ```json
-// Streamable HTTP
 {
   "mcpServers": {
     "vedastro": {
@@ -187,10 +185,7 @@ URL from below          Cursor, or any               AI delivers Vedic
 {
   "mcpServers": {
     "vedastro": {
-      "httpUrl": "https://mcp.vedastro.org/api/mcp",
-      "headers": {
-        "x-api-key": "your-api-key-here"
-      }
+      "httpUrl": "https://mcp.vedastro.org/api/mcp/key/your-api-key-here"
     }
   }
 }
@@ -203,15 +198,13 @@ For any MCP-compatible client, use these connection details:
 | Property | Value |
 |---|---|
 | **Transport** | Streamable HTTP |
-| **Endpoint URL** | `https://mcp.vedastro.org/api/mcp` |
+| **Free Tier URL** | `https://mcp.vedastro.org/api/mcp` |
+| **Premium URL** | `https://mcp.vedastro.org/api/mcp/key/{your-api-key}` |
 | **Server Name** | VedAstro |
 | **Available Tools** | `get_horoscope_predictions`, `get_match_report`, `get_numerology_prediction`, `get_astrology_raw_data`, `get_general_astro_data`, `get_ashtakvarga_data` |
-| **Auth** | None required (free tier) or API Key in headers for unlimited |
-| **API Key Header** | `x-api-key`, `APIKey`, or `Authorization: Bearer` |
 
 **Free Tier** (5 requests/minute):
 ```json
-// Generic MCP configuration (JSON)
 {
   "server_name": "vedastro",
   "transport": "streamable-http",
@@ -224,14 +217,11 @@ For any MCP-compatible client, use these connection details:
 {
   "server_name": "vedastro",
   "transport": "streamable-http",
-  "url": "https://mcp.vedastro.org/api/mcp",
-  "headers": {
-    "x-api-key": "your-api-key-here"
-  }
+  "url": "https://mcp.vedastro.org/api/mcp/key/your-api-key-here"
 }
 ```
 
-> **Note:** The server accepts API keys via `x-api-key`, `APIKey`, or `Authorization: Bearer` headers.
+> **Note:** Advanced users can also pass API keys via headers (`x-api-key`, `APIKey`, or `Authorization: Bearer`), but the URL-based approach is simpler and works with all clients.
 
 ---
 
@@ -241,7 +231,35 @@ The MCP server supports **optional API key authentication** for unlimited reques
 
 ### How to Add API Key
 
-Add the API key in your MCP client configuration using the `headers` field:
+Simply embed your API key in the URL:
+
+**Free Tier:**
+```
+https://mcp.vedastro.org/api/mcp
+```
+
+**Unlimited Tier:**
+```
+https://mcp.vedastro.org/api/mcp/key/your-api-key-here
+```
+
+**Example Configuration:**
+```json
+{
+  "mcpServers": {
+    "vedastro": {
+      "url": "https://mcp.vedastro.org/api/mcp/key/your-api-key-here"
+    }
+  }
+}
+```
+
+### Alternative: Header-Based Authentication (Advanced)
+
+For advanced users, the server also accepts API keys via headers:
+- ✅ `x-api-key: your-key-here`
+- ✅ `APIKey: your-key-here`
+- ✅ `Authorization: Bearer your-key-here`
 
 ```json
 {
@@ -256,18 +274,13 @@ Add the API key in your MCP client configuration using the `headers` field:
 }
 ```
 
-### Supported Header Formats
-
-The server accepts API keys via any of these headers:
-- ✅ `x-api-key: your-key-here`
-- ✅ `APIKey: your-key-here`
-- ✅ `Authorization: Bearer your-key-here`
+> **Note:** URL-based authentication is recommended for universal compatibility. Header-based auth requires manual JSON config editing on some clients (like Claude Desktop).
 
 ### Get Your API Key
 
 👉 [**Purchase API Key — $1/month**](https://buy.stripe.com/5kA8y67nVchNdqw4gx)
 
-After purchase, your API key will be visible on your [**Account Page**](https://vedastro.org/Account.html) or [**API Builder Page**](https://vedastro.org/APIBuilder.html). Simply copy it and add it to your MCP client configuration as shown above.
+After purchase, your API key will be visible on your [**Account Page**](https://vedastro.org/Account.html) or [**API Builder Page**](https://vedastro.org/APIBuilder.html). Copy it and add it to your MCP client URL as shown above.
 
 ---
 
